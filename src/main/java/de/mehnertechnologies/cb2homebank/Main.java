@@ -20,6 +20,8 @@ public class Main {
                 help(options);
             }
             
+            
+            
             //System.out.println("Hello world");
         } catch (ParseException ex) {
             help(options);
@@ -35,8 +37,12 @@ public class Main {
         Options options = new Options();
         
         options.addOption("help", "Prints this help");
-        options.addOption("if", true, "Path to Commerzbank CSV input file");
-        options.addOption("d", true, "Path to output directory");
+        Option option1 = new Option("if", true, "Path to Commerzbank CSV input file (required");
+        option1.setRequired(true);
+        options.addOption(option1);
+        Option option2 = new Option("d", true, "Path to output directory (required)");
+        option2.setRequired(true);
+        options.addOption(option2);
         
         return options;
     }
