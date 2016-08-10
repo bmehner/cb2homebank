@@ -1,2 +1,2 @@
 # cb2homebank
-A converter of Commerzbank CSV to Homebank
+A converter of Commerzbank CSV to HomeBank
