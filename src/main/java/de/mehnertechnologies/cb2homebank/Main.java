@@ -12,11 +12,16 @@ public class Main {
         
         try {
             Cb2HbConfiguration configuration = parseCommandlineArgs(args);
-            List<FinancialTransaction> financialTransactions = readInputFile(configuration);
-            writeOutputFile(financialTransactions, configuration);
+     
+            CbCsvFileReader cbCsvFileReader = new CbCsvFileReader(configuration);
+            HomeBankFileWriter homeBankFileWriter = new HomeBankFileWriter(configuration);
+            
+            List<FinancialTransaction> financialTransactions = cbCsvFileReader.readInputFile();
+            homeBankFileWriter.writeOutputFile(financialTransactions);
+            
             System.exit(0);
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
     }
@@ -57,13 +62,5 @@ public class Main {
         options.addOption(option2);
         
         return options;
-    }
-
-    private static List<FinancialTransaction> readInputFile(Cb2HbConfiguration configuration) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private static void writeOutputFile(List<FinancialTransaction> financialTransactions, Cb2HbConfiguration configuration) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
