@@ -44,16 +44,13 @@ public class HomeBankFileWriter {
                 String dateString = financialTransaction.getDateOfBooking().format(DateTimeFormatter.ofPattern("dd-MM-yy"));
                 Paymode paymode = mapTransactionType(financialTransaction.getTransactionType());
                 String paymodeString = String.valueOf(paymode.getCode());
-                csvPrinter.printRecord(dateString, paymodeString);
-                /*    
-                info 	a string
-                payee 	a payee name
-                memo 	a string
-                amount 	a number with a '.' or ',' as decimal separator, ex: -24.12 or 36,75
-                category 	a full category name (category, or category:subcategory)
-                tags 	tags separated by space
-                tag is mandatory since v4.5
-                */
+                String infoString = financialTransaction.getDescription();
+                String payeeString = "";
+                String memoString = "";
+                String amountString = financialTransaction.getAmount().toString();
+                String categoryString = "";
+                String tagsString = "Commerzbank";
+                csvPrinter.printRecord(dateString, paymodeString, infoString, payeeString, memoString, amountString, categoryString, tagsString);
             }
         }
         
